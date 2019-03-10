@@ -1,3 +1,14 @@
 language: go
 go:
-  - 1.12.x
+- 1.12.x
+env:
+  - GO111MODULE=on
+deploy:
+  provider: releases
+  api_key:
+    secure: r43hgPS/wLBmJ1Pc/Z31tGhlKVblXTDgBs+XnLPRRknczgNLLek5tWuqqzLgeWqBKWp9hspVxJNV21772X6XOPRHQXxr7uPIOtr0YkDCk+TMt/9nDahtpbljlpdcGKQ8AYnEKMxDM2oMCjFHhDlUlZbmRjcn/j2bC5fpVJCxZCOiAT/3XysGQUoSO3Z3bUGRBqkw9ZwDl/4573Kf/UaHczEPb+OWe+z6YIIHPnb/XMBpS7gvjBYdWaPqxAiDJ+eNQkZ8KJVVsUr+vvKVjzbBBZIhl/mNw9OJ6L2vmwH+J9oRLUXfWsY4k9ojPiR3Heu6VcxD1ol/2t3WSVi0yYRgRrYj5kbi9K1JoEOWaZcbvPWSrGLYCcxCMhB6hmQxiOa/sMj/gdPHA/kCf43IHoAROJ7pmxbFrrQawTxQeuu21bc0764BfPAdh8GYLABXe3AhBAWnLLpa/wtvfA7ellvE9ChFAoFlde00sjdWlch683zxvQapBXmuaBh0BFGJNaX9pMg/RDb/7vW+mranhLaBi7zeFeTqp3k6EgL/9j8Q2eDhNUdOlzbZMIYq9og8mP/7WTthGbJHkO0EPM7pxXuonQGE/DOGvlgDaJXTPytoyWJRiF4u1IVGAV+iP3XqdzCtGgdXZ7lp4iD1TL5+kviDGs8PU9HuVEJApd+jgo6Q8ag=
+  file: cholibot
+  skip_cleanup: true
+  on:
+    repo: heshoots/cholibot
+    tags: true
