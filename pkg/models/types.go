@@ -13,8 +13,8 @@ var client *ModelClient
 var Config = struct {
 	Redis struct {
 		Address  string `required:"true"`
-		Password string `required:"true"`
-		DB       int    `required:"true"`
+		Password string `required:"false"`
+		DB       int    `required:"false"`
 	}
 }{}
 

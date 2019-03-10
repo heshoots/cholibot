@@ -1,7 +1,6 @@
 package discord
 
 import (
-	"fmt"
 	"github.com/heshoots/dmux"
 	"github.com/jinzhu/configor"
 	log "github.com/sirupsen/logrus"
@@ -43,7 +42,6 @@ func Start() {
 		discordInstance.AddHandler(handler)
 	}
 	discordInstance.Open()
-	fmt.Println("Bot is now running.  Press CTRL-C to exit.")
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
