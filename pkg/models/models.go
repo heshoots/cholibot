@@ -1,10 +1,11 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
+//"github.com/jinzhu/gorm"
+//_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
+/*
 type DiscordGuild struct {
 	gorm.Model
 	GuildID string `gorm:"unique;not null"`
@@ -43,4 +44,4 @@ func Migrate() {
 
 func GetDB() *gorm.DB {
 	return db
-}
+}*/

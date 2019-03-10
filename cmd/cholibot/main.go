@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/heshoots/cholibot/pkg/discord"
-	"github.com/heshoots/cholibot/pkg/webserver"
+	//"github.com/heshoots/cholibot/pkg/webserver"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
 func main() {
-	go webserver.Start()
+	//go webserver.Start()
 	go discord.Start()
 
 	sc := make(chan os.Signal, 1)
