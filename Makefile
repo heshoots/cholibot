@@ -1,10 +1,11 @@
-$PHONY: clean
+$PHONY: clean test build
 
 clean: 
-		rm cholibot
+		rm cholibot || true
 
-cholibot:
+test:
+	go test ./...
+		
+build:
 		CGO_ENABLED=0 GOOS=linux go build -o cholibot ./cmd/cholibot/main.go
-
-build: cholibot
 
