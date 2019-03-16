@@ -2,13 +2,13 @@ language: go
 go:
 - 1.12.x
 env:
-- GO111MODULE=on
+  - GO111MODULE=on
 deploy:
   provider: releases
   api_key:
-    secure: XB2YYInGap98NG8389gRk3/N0EiaHKS5803ZyBT43Bg7pgZ3OijOq+boR8Z7pRDVFZHlwBWe4KZNOlvFwnHcjtlN4QMkqmsXZhho56yiRiWfK90ps5tsaA+HXHJp0mZBkyWMtF9Ezn6z0nSnWihapvNwCFi/f6CmbiINT9zSw1hG2eguUm8logLvqbUvNNMpp6/I2/npE5AWxa3JzZaODgo/FdxNesD+EfdWd1aFH3romXgK/8GnZ9TMzjsay8b3cJpKQ2+x5C2gDU+mrtyTondlyQPqSfELLuBQ2//q+dFUz6c4ezk2LdrxftKeBR2FgyC7RL+hJdMUM+tLWGfvUi4II5FjGKymgbqf/rqBtmKVgTwRgXgUwJ98nTDdX5Ss4GJe153TYZIqk9WbyPiJUvuBmojLXHX+0SsNlLpCdr+V+DDCCCXHin+VxNNLq6WxzGkbT8Wc+y6xb33VFhA0VTePmxDbOyH3rzLqkU4iHIQcsZ8tHIg6Tfe9TZ/Uy04+DE+G86mZg3rkPsckdcO7CjVqqhbtvW1PwOkFWOQFwp2V8v8eQRBLRQCGq6X8gdftbwXkms1ivaCKsBbHemvCcCKxo861DRJjN8kl9PUeJ6B6BnPZ5PMwY1lpF/I6jeilM1wO6sT8+TJheBz8SGHIP7J+QQhhvYbQie97wGa1nJA=
+    secure: r43hgPS/wLBmJ1Pc/Z31tGhlKVblXTDgBs+XnLPRRknczgNLLek5tWuqqzLgeWqBKWp9hspVxJNV21772X6XOPRHQXxr7uPIOtr0YkDCk+TMt/9nDahtpbljlpdcGKQ8AYnEKMxDM2oMCjFHhDlUlZbmRjcn/j2bC5fpVJCxZCOiAT/3XysGQUoSO3Z3bUGRBqkw9ZwDl/4573Kf/UaHczEPb+OWe+z6YIIHPnb/XMBpS7gvjBYdWaPqxAiDJ+eNQkZ8KJVVsUr+vvKVjzbBBZIhl/mNw9OJ6L2vmwH+J9oRLUXfWsY4k9ojPiR3Heu6VcxD1ol/2t3WSVi0yYRgRrYj5kbi9K1JoEOWaZcbvPWSrGLYCcxCMhB6hmQxiOa/sMj/gdPHA/kCf43IHoAROJ7pmxbFrrQawTxQeuu21bc0764BfPAdh8GYLABXe3AhBAWnLLpa/wtvfA7ellvE9ChFAoFlde00sjdWlch683zxvQapBXmuaBh0BFGJNaX9pMg/RDb/7vW+mranhLaBi7zeFeTqp3k6EgL/9j8Q2eDhNUdOlzbZMIYq9og8mP/7WTthGbJHkO0EPM7pxXuonQGE/DOGvlgDaJXTPytoyWJRiF4u1IVGAV+iP3XqdzCtGgdXZ7lp4iD1TL5+kviDGs8PU9HuVEJApd+jgo6Q8ag=
   file: cholibot
   skip_cleanup: true
   on:
-    tags: true
     repo: heshoots/cholibot
+    tags: true
