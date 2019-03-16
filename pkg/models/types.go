@@ -38,7 +38,6 @@ func GetClient() *ModelClient {
 			DB:       Config.Redis.DB,
 		})}
 		return client
-
 	} else {
 		return client
 	}
