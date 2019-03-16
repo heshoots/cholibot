@@ -118,7 +118,15 @@ func showRolesHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 		if err != nil {
 			log.Error(err)
 		}
-		out := "```Available roles\n-------------"
+		out := `
+To get a role use !iam Role
+To remove a role use !iamn Role
+
+Roles ending in "Fighters" can be @ mentioned
+
+Available Roles
+-----------
+`
 		for _, role := range roles {
 			out += "\n!iam " + role
 		}
