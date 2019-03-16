@@ -130,7 +130,6 @@ Available Roles
 		for _, role := range roles {
 			out += "\n!iam " + role
 		}
-		out += "```"
 		_, err = s.MessageChannel(ctx.ChannelID(), out)
 		if err != nil {
 			log.Error(err)
