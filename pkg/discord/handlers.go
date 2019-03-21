@@ -8,7 +8,11 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetRole(s dmux.Session, guild string, roleName string) (dmux.Role, error) {
+func SendMessage(s dmux.Session, c dmux.Channel, m string) (dmux.Message, error) {
+	return s.MessageChannel(c, dmux.DiscordMessageString(m))
+}
+
+func GetRole(s dmux.Session, guild dmux.Guild, roleName string) (dmux.Role, error) {
 	roles, err := s.GuildRoles(guild)
 	if err != nil {
 		return nil, err
@@ -28,37 +32,37 @@ func ChallongeHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	apikey, subdomain, err := challonge.GetCredentials(ctx)
 	if err != nil {
 		log.Error(err)
-		s.MessageChannel(ctx.ChannelID(), "Couldn't find challonge credentials for this server")
+		SendMessage(s, ctx.Channel(), "Couldn't find challonge credentials for this server")
 		return
 	}
 	url, err := challonge.CreateTournament(apikey, subdomain, tournamentName, game)
 	log.Println(url)
 	if err != nil {
 		log.Error(err)
-		s.MessageChannel(ctx.ChannelID(), "Couldn't create tournament")
+		SendMessage(s, ctx.Channel(), "Couldn't create tournament")
 		return
 	}
-	s.MessageChannel(ctx.ChannelID(), url)
+	SendMessage(s, ctx.Channel(), url)
 }
 
 func AddRole(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
 		role := context.Groups()["role"]
-		discordRole, err := GetRole(s, ctx.GuildID(), role)
+		discordRole, err := GetRole(s, ctx.Guild(), role)
 		if err != nil {
 			log.Error(err)
-			_, err = s.MessageChannel(ctx.ChannelID(), "couldn't find role in server")
+			SendMessage(s, ctx.Channel(), "couldn't find role in server")
 			return
 		}
 		db := models.GetClient()
-		err = db.SetRole(ctx.GuildID(), role, discordRole.ID())
+		err = db.SetRole(ctx.Guild().ID(), role, discordRole.ID())
 		if err != nil {
 			log.Error(err)
-			_, err = s.MessageChannel(ctx.ChannelID(), "couldn't add new role")
+			SendMessage(s, ctx.Channel(), "couldn't add new role")
 			return
 		}
-		_, err = s.MessageChannel(ctx.ChannelID(), role+" added to roles")
+		SendMessage(s, ctx.Channel(), role+" added to roles")
 	}
 }
 
@@ -67,13 +71,13 @@ func RemoveRole(s dmux.Session, context dmux.RegexHandlerContext) {
 	if ok {
 		role := context.Groups()["role"]
 		db := models.GetClient()
-		err := db.RemoveRole(ctx.GuildID(), role)
+		err := db.RemoveRole(ctx.Guild().ID(), role)
 		if err != nil {
 			log.Error(err)
-			_, err = s.MessageChannel(ctx.ChannelID(), "couldn't remove role")
+			SendMessage(s, ctx.Channel(), "couldn't remove role")
 			return
 		}
-		_, err = s.MessageChannel(ctx.ChannelID(), "role removed")
+		SendMessage(s, ctx.Channel(), "role removed")
 	}
 }
 
@@ -82,14 +86,14 @@ func IamHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	if ok {
 		role := context.Groups()["role"]
 		db := models.GetClient()
-		dbrole, _ := db.GetRole(ctx.GuildID(), role)
-		err := s.GuildMemberRoleAdd(ctx.GuildID(), ctx.UserID(), dbrole)
+		dbrole, _ := db.GetRole(ctx.Guild().ID(), role)
+		err := s.GuildMemberRoleAdd(ctx.Guild(), ctx.User(), dmux.CreateDiscordRole(dbrole))
 		if err != nil {
 			log.Error(err)
-			s.MessageChannel(ctx.ChannelID(), "couldn't add role")
+			SendMessage(s, ctx.Channel(), "couldn't add role")
 			return
 		}
-		s.MessageChannel(ctx.ChannelID(), "role added")
+		SendMessage(s, ctx.Channel(), "role added")
 	}
 }
 
@@ -99,14 +103,14 @@ func IamnHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 		role := context.Groups()["role"]
 		log.Info(role)
 		db := models.GetClient()
-		dbrole, _ := db.GetRole(ctx.GuildID(), role)
-		err := s.GuildMemberRoleRemove(ctx.GuildID(), ctx.UserID(), dbrole)
+		dbrole, _ := db.GetRole(ctx.Guild().ID(), role)
+		err := s.GuildMemberRoleRemove(ctx.Guild(), ctx.User(), dmux.CreateDiscordRole(dbrole))
 		if err != nil {
 			log.Error(err)
-			s.MessageChannel(ctx.ChannelID(), "couldn't remove role")
+			SendMessage(s, ctx.Channel(), "couldn't remove role")
 			return
 		}
-		s.MessageChannel(ctx.ChannelID(), "role removed")
+		SendMessage(s, ctx.Channel(), "role removed")
 	}
 }
 
@@ -114,7 +118,7 @@ func showRolesHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
 		db := models.GetClient()
-		roles, err := db.GetRoles(ctx.GuildID())
+		roles, err := db.GetRoles(ctx.Guild().ID())
 		if err != nil {
 			log.Error(err)
 		}
@@ -130,7 +134,7 @@ Available Roles
 		for _, role := range roles {
 			out += "\n!iam " + role
 		}
-		_, err = s.MessageChannel(ctx.ChannelID(), out)
+		_, err = SendMessage(s, ctx.Channel(), out)
 		if err != nil {
 			log.Error(err)
 			return
@@ -143,13 +147,13 @@ func SetCommandHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	if ok {
 		db := models.GetClient()
 		groups := context.Groups()
-		err := db.SetCustomCommand(ctx.GuildID(), groups["command"], groups["response"])
+		err := db.SetCustomCommand(ctx.Guild().ID(), groups["command"], groups["response"])
 		if err != nil {
-			s.MessageChannel(ctx.ChannelID(), "Couldn't set command")
+			SendMessage(s, ctx.Channel(), "Couldn't set command")
 			log.Error(err)
 			return
 		}
-		s.MessageChannel(ctx.ChannelID(), "Command set")
+		SendMessage(s, ctx.Channel(), "Command set")
 		return
 	}
 }
@@ -159,18 +163,18 @@ func CustomCommand(s dmux.Session, context dmux.RegexHandlerContext) {
 	if ok {
 		command := context.Groups()["command"]
 		db := models.GetClient()
-		resp, err := db.GetCustomCommand(ctx.GuildID(), command)
+		resp, err := db.GetCustomCommand(ctx.Guild().ID(), command)
 		if err != nil {
 			return
 		}
-		s.MessageChannel(ctx.ChannelID(), resp)
+		SendMessage(s, ctx.Channel(), resp)
 	}
 }
 
 func ListCommands(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
-		isAdmin, err := ctx.UserAdmin(s)
+		isAdmin, err := ctx.User().Admin(s, ctx.Channel())
 		if err != nil {
 			log.Error("Couldn't determine if admin user")
 			isAdmin = false
@@ -185,16 +189,16 @@ func ListCommands(s dmux.Session, context dmux.RegexHandlerContext) {
 			}
 		}
 		db := models.GetClient()
-		customCommands, err := db.GetCustomCommands(ctx.GuildID())
+		customCommands, err := db.GetCustomCommands(ctx.Guild().ID())
 		if err != nil {
 			log.Error("Couldn't get custom commands for server")
-			s.MessageChannel(ctx.ChannelID(), commands)
+			SendMessage(s, ctx.Channel(), commands)
 			return
 		}
 		for _, command := range customCommands {
 			commands += "\n!" + command
 		}
-		s.MessageChannel(ctx.ChannelID(), commands)
+		SendMessage(s, ctx.Channel(), commands)
 		return
 	}
 }

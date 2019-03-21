@@ -11,6 +11,10 @@ github.com/gorilla/websocket v1.4.0 h1:WDFjx/TMzVgy9VdMMQi2K2Emtwi2QcUQsztZ/zLaH
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/heshoots/dmux v0.0.0-20190310203922-0faebd8e1ebb h1:B5FsRFPJ+HpjTo8kpy4MFuc5wg3TejzijvOywPhN1SU=
 github.com/heshoots/dmux v0.0.0-20190310203922-0faebd8e1ebb/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
+github.com/heshoots/dmux v0.0.0-20190321225041-4432bbb8b10a h1:MotUCCTWRfx7IrG9NRFOpxRs39YyRq5IHTUYjJsIFOE=
+github.com/heshoots/dmux v0.0.0-20190321225041-4432bbb8b10a/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
+github.com/heshoots/dmux v0.0.1 h1:/rhhP6n/QFb6T1av7hI1Ab2sdCOk87hY7AL2tWLSldw=
+github.com/heshoots/dmux v0.0.1/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
 github.com/jinzhu/configor v1.0.0 h1:F8ck+vczDAvSbsz77Mj8pttFZQJTFau1uJ3efJkHoYU=
 github.com/jinzhu/configor v1.0.0/go.mod h1:xycrO0mK6seJRAHXsdyk54QgPJ20aQNpTGi5xv8jQg8=
 github.com/jinzhu/gorm v1.9.2 h1:lCvgEaqe/HVE+tjAR2mt4HbbHAZsQOv3XAZiEZV37iw=

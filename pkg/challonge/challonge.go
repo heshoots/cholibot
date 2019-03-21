@@ -11,10 +11,10 @@ import (
 
 func GetCredentials(m dmux.MessageContext) (string, string, error) {
 	db := models.GetClient()
-	if exists, err := db.HasChallonge(m.GuildID()); !exists || err != nil {
+	if exists, err := db.HasChallonge(m.Guild().ID()); !exists || err != nil {
 		return "", "", errors.New("Guild does not have challonge credentials")
 	}
-	return db.GetChallonge(m.GuildID())
+	return db.GetChallonge(m.Guild().ID())
 }
 
 func CreateTournament(apikey string, subdomain string, name string, game string) (string, error) {
