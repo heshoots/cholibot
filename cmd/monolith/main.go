@@ -9,7 +9,7 @@ import (
 	"syscall"
 )
 
-const version = "v0.0.1"
+var version string
 
 func main() {
 	log.Info("Version: " + version)
