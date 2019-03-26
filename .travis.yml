@@ -3,6 +3,8 @@ go:
 - 1.12.x
 env:
 - GO111MODULE=on
+before_deploy:
+  - export BODY=$(cat cholibot.sha256)
 deploy:
   provider: releases
   api_key:
@@ -13,4 +15,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: heshoots/cholibot
+    body: ${BODY}
     tags: true
