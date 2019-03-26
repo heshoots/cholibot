@@ -15,6 +15,8 @@ github.com/heshoots/dmux v0.0.0-20190321225041-4432bbb8b10a h1:MotUCCTWRfx7IrG9N
 github.com/heshoots/dmux v0.0.0-20190321225041-4432bbb8b10a/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
 github.com/heshoots/dmux v0.0.1 h1:/rhhP6n/QFb6T1av7hI1Ab2sdCOk87hY7AL2tWLSldw=
 github.com/heshoots/dmux v0.0.1/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
+github.com/heshoots/dmux v0.0.2 h1:3LPCbEbpeKDFPoU4Hr5iu0WO61PEkeuh4S9GB3OFxoo=
+github.com/heshoots/dmux v0.0.2/go.mod h1:Rf+XvUhclQ9b/Ldt58Ziyp+v+nCT3j7m18TwNYIqQys=
 github.com/jinzhu/configor v1.0.0 h1:F8ck+vczDAvSbsz77Mj8pttFZQJTFau1uJ3efJkHoYU=
 github.com/jinzhu/configor v1.0.0/go.mod h1:xycrO0mK6seJRAHXsdyk54QgPJ20aQNpTGi5xv8jQg8=
 github.com/jinzhu/gorm v1.9.2 h1:lCvgEaqe/HVE+tjAR2mt4HbbHAZsQOv3XAZiEZV37iw=
