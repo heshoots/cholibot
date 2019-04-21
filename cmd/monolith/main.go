@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/heshoots/cholibot/pkg/discord"
-	"github.com/heshoots/cholibot/pkg/webserver"
+	"github.com/quorauk/cholibot/pkg/discord"
+	"github.com/quorauk/cholibot/pkg/webserver"
 	log "github.com/sirupsen/logrus"
 	"os"
 	"os/signal"

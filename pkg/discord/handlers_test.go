@@ -1,7 +1,9 @@
 package discord
 
 import (
-	"github.com/heshoots/dmux"
+	"github.com/quorauk/cholibot/pkg/models"
+	"github.com/quorauk/dmux"
+	"github.com/jinzhu/configor"
 	"testing"
 )
 

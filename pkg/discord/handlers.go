@@ -2,9 +2,9 @@ package discord
 
 import (
 	"errors"
-	"github.com/heshoots/cholibot/pkg/challonge"
-	"github.com/heshoots/cholibot/pkg/models"
-	"github.com/heshoots/dmux"
+	"github.com/quorauk/cholibot/pkg/challonge"
+	"github.com/quorauk/cholibot/pkg/models"
+	"github.com/quorauk/dmux"
 	log "github.com/sirupsen/logrus"
 )
 

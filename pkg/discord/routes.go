@@ -1,7 +1,7 @@
 package discord
 
 import (
-	"github.com/heshoots/dmux"
+	"github.com/quorauk/dmux"
 )
 
 func Handlers() []*dmux.DiscordRegexMessageHandler {

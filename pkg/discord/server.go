@@ -1,7 +1,7 @@
 package discord
 
 import (
-	"github.com/heshoots/dmux"
+	"github.com/quorauk/dmux"
 	"github.com/jinzhu/configor"
 	log "github.com/sirupsen/logrus"
 	"os"

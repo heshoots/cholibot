@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/heshoots/cholibot/pkg/models"
-	"github.com/heshoots/dmux"
+	"github.com/quorauk/cholibot/pkg/models"
+	"github.com/quorauk/dmux"
 	"net/http"
 )
 
