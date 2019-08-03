@@ -7,6 +7,6 @@ test:
 	go test ./...
 		
 build:
-		CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.version=$(TRAVIS_TAG)" -o cholibot ./cmd/monolith/main.go
+		CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.version=$(TRAVIS_TAG)" -o cholibot ./cmd/app/main.go
 		sha256sum cholibot > cholibot.sha256
 
