@@ -23,6 +23,10 @@ func Environment() {
 	if !envSet {
 		environment = "development"
 	}
+	if environment == "test" {
+		configor.Load(&Config, "../../config/test.yaml")
+		return
+	}
 	err := configor.Load(&Config, "./config/"+environment+".yaml")
 	if err != nil {
 		log.Fatal(err)
@@ -106,7 +110,7 @@ func (m *ModelClient) GetChallonge(guild string) (string, string, error) {
 type ModelSource interface {
 	GetRoles(guild string) ([]string, error)
 	GetRole(guild string, role string) (string, error)
-	SetRole(guild string, role string) error
+	SetRole(guild string, role string, id string) error
 	RemoveRole(guild string, role string) error
 	GetCustomCommands(guild string) ([]string, error)
 	SetCustomCommand(guild, command, response string) error

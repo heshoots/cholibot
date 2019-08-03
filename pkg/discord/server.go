@@ -14,7 +14,9 @@ var discordInstance dmux.Session
 
 var Config = struct {
 	DiscordBot struct {
-		AuthToken string `required:"true"`
+		AuthToken   string `required:"true"`
+		TestAccount string `required:"false"`
+		TestGuild   string `required:"false"`
 	}
 }{}
 
