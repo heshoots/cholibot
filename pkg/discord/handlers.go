@@ -55,7 +55,7 @@ func AddRole(s dmux.Session, context dmux.RegexHandlerContext) {
 			SendMessage(s, ctx.Channel(), "couldn't find role in server")
 			return
 		}
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		err = db.SetRole(ctx.Guild().ID(), role, discordRole.ID())
 		if err != nil {
 			log.Error(err)
@@ -70,7 +70,7 @@ func RemoveRole(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
 		role := context.Groups()["role"]
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		err := db.RemoveRole(ctx.Guild().ID(), role)
 		if err != nil {
 			log.Error(err)
@@ -85,7 +85,7 @@ func IamHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
 		role := context.Groups()["role"]
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		dbrole, _ := db.GetRole(ctx.Guild().ID(), role)
 		err := s.GuildMemberRoleAdd(ctx.Guild(), ctx.User(), dmux.CreateDiscordRole(dbrole))
 		if err != nil {
@@ -102,7 +102,7 @@ func IamnHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	if ok {
 		role := context.Groups()["role"]
 		log.Info(role)
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		dbrole, _ := db.GetRole(ctx.Guild().ID(), role)
 		err := s.GuildMemberRoleRemove(ctx.Guild(), ctx.User(), dmux.CreateDiscordRole(dbrole))
 		if err != nil {
@@ -117,7 +117,7 @@ func IamnHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 func showRolesHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		roles, err := db.GetRoles(ctx.Guild().ID())
 		if err != nil {
 			log.Error(err)
@@ -145,7 +145,7 @@ Available Roles
 func SetCommandHandler(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		groups := context.Groups()
 		err := db.SetCustomCommand(ctx.Guild().ID(), groups["command"], groups["response"])
 		if err != nil {
@@ -162,7 +162,7 @@ func CustomCommand(s dmux.Session, context dmux.RegexHandlerContext) {
 	ok, ctx := context.MessageContext()
 	if ok {
 		command := context.Groups()["command"]
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		resp, err := db.GetCustomCommand(ctx.Guild().ID(), command)
 		if err != nil {
 			return
@@ -188,7 +188,7 @@ func ListCommands(s dmux.Session, context dmux.RegexHandlerContext) {
 				commands += "\n" + handler.Name()
 			}
 		}
-		db := models.GetClient()
+		db := models.GetDiscordClient(s)
 		customCommands, err := db.GetCustomCommands(ctx.Guild().ID())
 		if err != nil {
 			log.Error("Couldn't get custom commands for server")
